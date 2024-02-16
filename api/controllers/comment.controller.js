@@ -31,3 +31,23 @@ export const getPostComments = async (req, res, next) => {
     next(error);
   }
 };
+
+export const likeComment = async (req, res, next) => {
+  try {
+    const comment = await Comment.findById(req.params.commentId);
+    if (!comment) {
+      return next(errorHandler(404, "No such comment exists"));
+    }
+    const userIndex = comment.likes.indexOf(req.user.id);
+    if (userIndex === -1) {
+      comment.numberOfLikes += 1;
+      comment.likes.push(req.user.id);
+    } else {
+      comment.numberOfLikes -= 1;
+      comment.likes.splice(userIndex, 1);
+    }
+    await comment.save();
+  } catch (error) {
+    next(error);
+  }
+};
