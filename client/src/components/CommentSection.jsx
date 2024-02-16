@@ -31,6 +31,7 @@ export default function CommentSection({ postId }) {
       if (res.ok) {
         setComment("");
         setCommentError(null);
+        setComments([data,...comments]);
       }
       console.log(data);
     } catch (error) {
@@ -117,8 +118,8 @@ export default function CommentSection({ postId }) {
               <p>{comments.length}</p>
             </div>
           </div>
-          {comments?.map(comment => (
-            <Comment key={comment._id} />
+          {comments?.map((comment) => (
+            <Comment key={comment._id} comment={comment} />
           ))}
         </>
       )}
