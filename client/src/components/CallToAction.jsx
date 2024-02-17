@@ -11,9 +11,9 @@ export default function CallToAction() {
                 Checkout these resources with 100 JavaScript Projects
             </p>
             <Button gradientDuoTone='purpleToPink' className='rounded-tl-xl rounded-bl-none'>
-                <a href="https://www.100jsprojects.com" target='_blank' rel='noopener noreferrer'>
+                <p>
                     100 JavaScript Projects
-                </a>
+                </p>
             </Button>
         </div>
         <div className="p-7 flex-1">
