@@ -8,13 +8,14 @@ import {
   HiAnnotation,
   HiChartPie,
 } from "react-icons/hi";
-import { useSelector } from "react-redux";
+import { useSelector,useDispatch } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
 import { signoutSuccess } from "../redux/user/userSlice";
 
 export default function DashSidebar() {
   const { currentUser } = useSelector((state) => state.user);
   const location = useLocation();
+  const dispatch = useDispatch();
   const [tab, setTab] = useState("");
   useEffect(() => {
     const urlParams = new URLSearchParams(location.search);
