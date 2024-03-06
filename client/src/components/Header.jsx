@@ -6,6 +6,7 @@ import { FaMoon, FaSun } from "react-icons/fa6";
 import { useSelector, useDispatch } from "react-redux";
 import { toggleTheme } from "../redux/theme/themeSlice";
 import { useEffect, useState } from "react";
+import { signoutSuccess } from "../redux/user/userSlice";
 
 export default function Header() {
   const path = useLocation().pathname;

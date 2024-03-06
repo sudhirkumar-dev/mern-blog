@@ -10,6 +10,7 @@ import {
 } from "react-icons/hi";
 import { useSelector } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
+import { signoutSuccess } from "../redux/user/userSlice";
 
 export default function DashSidebar() {
   const { currentUser } = useSelector((state) => state.user);
