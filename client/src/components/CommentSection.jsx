@@ -118,7 +118,7 @@ export default function CommentSection({ postId }) {
           <img
             className='h-5 w-5 object-cover rounded-full'
             src={currentUser.profilePicture}
-            alt=''
+            alt={currentUser.profilePicture}
           />
           <Link
             to={'/dashboard?tab=profile'}
