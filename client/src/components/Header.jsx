@@ -1,6 +1,6 @@
 /* eslint-disable react/no-unescaped-entities */
 import { Avatar, Button, Dropdown, Navbar, TextInput } from "flowbite-react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation,useNavigate } from "react-router-dom";
 import { AiOutlineSearch } from "react-icons/ai";
 import { FaMoon, FaSun } from "react-icons/fa6";
 import { useSelector, useDispatch } from "react-redux";
@@ -14,22 +14,23 @@ export default function Header() {
   const dispatch = useDispatch();
   const { currentUser } = useSelector((state) => state.user);
   const { theme } = useSelector((state) => state.theme);
-  const [searchTerm, setSearchTerm] = useState("");
-  console.log(searchTerm);
+  const [searchTerm,setSearchTerm] = useState('');
+  console.log(searchTerm)
   const navigate = useNavigate();
-
-  useEffect(() => {
+    
+  useEffect(()=>{
     const urlParams = new URLSearchParams(location.search);
-    const searchTermFromUrl = urlParams.get("searchTerm");
-    if (searchTermFromUrl) {
-      setSearchTerm(searchTermFromUrl);
+    const searchTermFromUrl = urlParams.get('searchTerm');
+    if(searchTermFromUrl){
+      setSearchTerm(searchTermFromUrl)
     }
-  }, [searchTerm]);
+
+  },[searchTerm])
 
   const handleSignout = async () => {
     try {
-      const res = await fetch("/api/user/signout", {
-        method: "POST",
+      const res = await fetch('/api/user/signout', {
+        method: 'POST',
       });
       const data = await res.json();
       if (!res.ok) {
@@ -42,13 +43,13 @@ export default function Header() {
     }
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = (e)=>{
+    e.preventDefault()
     const urlParams = new URLSearchParams(location.search);
-    urlParams.set("searchTerm", searchTerm);
+    urlParams.set('searchTerm',searchTerm)
     const searchQuery = urlParams.toString();
     navigate(`/search?${searchQuery}`);
-  };
+  }
 
   return (
     <Navbar className="border-b-2">
@@ -68,7 +69,7 @@ export default function Header() {
           rightIcon={AiOutlineSearch}
           className="hidden lg:inline"
           value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
+          onChange={e => setSearchTerm(e.target.value)}
         />
       </form>
       <Button className="w-12 h-10 lg:hidden" color="gray" pill>
@@ -81,17 +82,7 @@ export default function Header() {
           pill
           onClick={() => dispatch(toggleTheme())}
         >
-          {theme === "light" ? (
-            <>
-              <FaMoon />
-              Dark
-            </>
-          ) : (
-            <>
-              <FaSun />
-              Light
-            </>
-          )}
+          {theme === "light" ? <FaMoon /> : <FaSun />}
         </Button>
         {currentUser ? (
           <Dropdown
